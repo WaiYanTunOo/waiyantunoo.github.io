@@ -6,9 +6,8 @@ import {
   AiFillGithub,
   AiOutlineTwitter,
   AiFillInstagram,
-   AiFillFacebook,
 } from "react-icons/ai";
-import { FaLinkedinIn,FaLine } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 
 function Home2() {
   return (
@@ -20,16 +19,14 @@ function Home2() {
               LET ME <span className="purple"> INTRODUCE </span> MYSELF
             </h1>
             <p className="home-about-body">
-             I am <b className="purple">25 </b> years old. I finished <b className="purple"> ACCA Part-1</b> subjects. I’m a curious person so that I can <b className="purple"> easily to adapt the
-related work conditions.</b>  I’m eager to learn. <b className="purple"> An enthusiastic and driven learner, </b> I am looking to enhance my
-practical knowledge in your job offer position. I enjoy overcoming challenges, and I’ve a genuine interest
-in your job offer position and making organizations successful.
+              I fell in love with programming and I have at least learnt
+              something, I think… 🤷‍♂️
               <br />
-             {/* <br />I am fluent in classics like
+              <br />I am fluent in classics like
               <i>
                 <b className="purple"> C++, Javascript and Go. </b>
               </i>
-              <br /> 
+              <br />
               <br />
               My field of Interest's are building new &nbsp;
               <i>
@@ -52,7 +49,7 @@ in your job offer position and making organizations successful.
               &nbsp; like
               <i>
                 <b className="purple"> React.js and Next.js</b>
-              </i>*/}
+              </i>
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -68,63 +65,46 @@ in your job offer position and making organizations successful.
               Feel free to <span className="purple">connect </span>with me
             </p>
             <ul className="home-about-social-links">
-               <li className="social-icons">
-              <a
-                href="https://line.me/ti/p/vi9O3RkM46"
-                target="_blank" 
-                rel="noreferrer"
-                className="icon-colour  home-social-icons"
-              >
-                <FaLine />
-              </a>
-            </li>
-          
-          
-          
-            <li className="social-icons">
-              <a
-                href="https://github.com/WaiYanTunOo/"
-               target="_blank" 
-                rel="noreferrer"
-                className="icon-colour  home-social-icons"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            
-            
-            <li className="social-icons">
-              <a
-                href="https://www.facebook.com/waiyantunoo.mm"
-                target="_blank" 
-                rel="noreferrer"
-                className="icon-colour  home-social-icons"
-              >
-                <AiFillFacebook />
-              </a>
-            </li>
-           
-            
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/waiyantunoo/"
-                target="_blank" 
-                rel="noreferrer"
-                className="icon-colour  home-social-icons"
-              >
-                <FaLinkedinIn />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.instagram.com/waiyantunoo_"
-                target="_blank" 
-                rel="noreferrer"
-                className="icon-colour  home-social-icons"
-              >
-                <AiFillInstagram />
-              </a>
-            </li>
+              <li className="social-icons">
+                <a
+                  href="https://github.com/soumyajit4419"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour  home-social-icons"
+                >
+                  <AiFillGithub />
+                </a>
+              </li>
+              <li className="social-icons">
+                <a
+                  href="https://twitter.com/Soumyajit4419"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour  home-social-icons"
+                >
+                  <AiOutlineTwitter />
+                </a>
+              </li>
+              <li className="social-icons">
+                <a
+                  href="https://www.linkedin.com/in/soumyajit4419/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour  home-social-icons"
+                >
+                  <FaLinkedinIn />
+                </a>
+              </li>
+              <li className="social-icons">
+                <a
+                  href="https://www.instagram.com/soumyajit4419"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="icon-colour home-social-icons"
+                >
+                  <AiFillInstagram />
+                </a>
+              </li>
             </ul>
           </Col>
         </Row>
