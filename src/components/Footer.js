@@ -2,14 +2,13 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
-  AiOutlineTwitter,
   AiFillInstagram,
   AiFillFacebook,
 } from "react-icons/ai";
 import { FaLinkedinIn, FaLine } from "react-icons/fa";
 function Footer() {
   let date = new Date();
-  let year = date.getFullYear();
+ {/* let year = date.getFullYear(); */}
   return (
     <Container fluid className="footer">
       <Row>
