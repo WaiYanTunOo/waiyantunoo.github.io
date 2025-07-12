@@ -112,7 +112,7 @@
 
     <div class="container mx-auto px-6">
 
-        <section id="stats" class="pb-16 reveal" data-animation="stagger-fade-in">
+        <section id="stats" class="pb-16" data-animation="stagger-fade-in">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="stat-card rounded-lg">
                     <div class="stat-header">
@@ -186,7 +186,7 @@
 
         <section id="skills" class="section-container">
             <h2 class="section-title reveal" data-animation="fade-in">Skills & <span>Expertise</span></h2>
-            <div class="max-w-4xl mx-auto bg-card p-8 rounded-xl reveal" data-animation="stagger-fade-in">
+            <div class="max-w-4xl mx-auto bg-card p-8 rounded-xl" data-animation="stagger-fade-in">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-6 text-center">Technical Skills</h3>
@@ -301,6 +301,8 @@
                         let targets = el;
                         // Correctly select children for staggered animations
                         if (animationType.includes('stagger')) {
+                            // The parent container still needs to be made visible
+                            el.style.opacity = 1; 
                             const staggerTargets = el.querySelectorAll('.stat-card, .bg-card, .skill-item');
                             if (staggerTargets.length > 0) {
                                 targets = staggerTargets;
