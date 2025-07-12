@@ -16,45 +16,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <style>
-        /* --- Base & Typography --- */
+        /* --- Base & Typography (Bright & Clean Theme) --- */
         body {
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: #f8f9fa; /* Light, clean background */
+            color: #343a40; /* Dark text for readability */
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
-        /* --- Animated Aurora Background --- */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 30%),
-                              radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.15), transparent 30%);
-            animation: move-aurora 20s infinite alternate linear;
-            z-index: -1;
-        }
-        @keyframes move-aurora {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 100px); }
-        }
 
-        /* --- General Styles & Components --- */
-        .text-accent { color: #38bdf8; }
-        .bg-accent { background-color: #38bdf8; }
-        .hover\:bg-accent-dark:hover { background-color: #0ea5e9; }
+        /* --- General Styles & Components (Classic Theme) --- */
+        .text-accent { color: #0d6efd; } /* Classic, professional blue */
+        .bg-accent { background-color: #0d6efd; }
+        .hover\:bg-accent-dark:hover { background-color: #0b5ed7; }
         
-        /* Glassmorphism Card Effect */
+        /* Classic Card Effect */
         .bg-card {
-            background-color: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .bg-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         .section-container { padding: 6rem 0; }
         .section-title {
@@ -62,8 +47,9 @@
             font-weight: 800;
             text-align: center;
             margin-bottom: 3rem;
+            color: #212529;
         }
-        .section-title span { color: #38bdf8; }
+        .section-title span { color: #0d6efd; }
         
         /* --- Animation & Interactive States --- */
         .reveal { opacity: 0; }
@@ -76,12 +62,42 @@
         .floating-image { animation: float 6s ease-in-out infinite; }
         
         /* Interactive Stats Section */
-        .stat-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .stat-header:hover { background-color: rgba(55, 65, 81, 0.5); }
-        .stat-details { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease-in-out; padding: 0 1.5rem; }
-        .stat-card.is-active .stat-details { max-height: 500px; opacity: 1; padding: 0 1.5rem 1.5rem 1.5rem; }
-        .plus-icon { transition: transform 0.4s ease; font-size: 1.5rem; }
+        .stat-card {
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: background-color 0.3s ease;
+        }
+        .stat-header { 
+            padding: 1.5rem; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-radius: 0.5rem;
+        }
+        .stat-header:hover { background-color: #f1f3f5; }
+        .stat-details { 
+            max-height: 0; 
+            opacity: 0; 
+            overflow: hidden; 
+            transition: all 0.5s ease-in-out; 
+            padding: 0 1.5rem; 
+        }
+        .stat-card.is-active .stat-details { 
+            max-height: 500px; 
+            opacity: 1; 
+            padding: 0 1.5rem 1.5rem 1.5rem; 
+        }
+        .is-active .stat-header {
+             background-color: #f1f3f5;
+        }
+        .plus-icon { 
+            transition: transform 0.4s ease; 
+            font-size: 1.5rem; 
+        }
         .stat-card.is-active .plus-icon { transform: rotate(45deg); }
+        .stat-details ul {
+            border-top: 1px solid #dee2e6;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -89,22 +105,19 @@
     <section class="min-h-screen flex items-center justify-center py-20">
         <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div class="text-center md:text-left">
-                <h1 class="hero-anim hero-name text-4xl md:text-6xl font-extrabold text-white">Wai Yan Tun Oo</h1>
+                <h1 class="hero-anim hero-name text-4xl md:text-6xl font-extrabold text-[#212529]">Wai Yan Tun Oo</h1>
                 <p class="hero-anim hero-subtitle text-xl md:text-2xl text-accent font-semibold mt-4">Analytical Thinker &bull; Problem Solver &bull; Finance Professional</p>
-                <p class="hero-anim hero-description max-w-2xl md:max-w-md mx-auto md:mx-0 mt-6 text-lg text-gray-300">
+                <p class="hero-anim hero-description max-w-2xl md:max-w-md mx-auto md:mx-0 mt-6 text-lg text-gray-600">
                     A versatile professional bridging the gap between finance and technology with a passion for programming and data-driven solutions.
                 </p>
-                <a href="#contact" class="hero-anim hero-button mt-8 inline-block bg-accent text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-accent-dark transition-transform duration-300 hover:scale-105">
+                <a href="#contact" class="hero-anim hero-button mt-8 inline-block bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-accent-dark transition-transform duration-300 hover:scale-105">
                     Let's Connect
                 </a>
             </div>
             <div class="hero-anim hero-image-container flex justify-center">
                 <div class="relative w-72 h-72 sm:w-80 sm:h-80 floating-image">
-                    <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full transform -rotate-12"></div>
-                    <div class="absolute inset-0 bg-gradient-to-tl from-gray-700 to-gray-800 rounded-full transform rotate-12"></div>
-                    <div class="absolute inset-2 bg-card rounded-full p-2 border-2 border-gray-700">
-                        <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">
-                    </div>
+                    <div class="absolute inset-0 bg-white rounded-full shadow-lg p-2 border-2 border-gray-200">
+                        <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                     
                 </div>
             </div>
         </div>
@@ -114,46 +127,46 @@
 
         <section id="stats" class="pb-16" data-animation="stagger-fade-in">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="stat-card rounded-lg">
+                <div class="stat-card bg-card">
                     <div class="stat-header">
                         <div>
                             <p class="text-4xl font-extrabold text-accent">4</p>
-                            <p class="text-gray-400 font-medium mt-1">Years of Experience</p>
+                            <p class="text-gray-500 font-medium mt-1">Years of Experience</p>
                         </div>
                         <i class="fas fa-plus text-accent plus-icon"></i>
                     </div>
                     <div class="stat-details">
-                        <ul class="space-y-2 text-gray-300 border-t border-gray-600 pt-4">
+                        <ul class="space-y-2 text-gray-600 pt-4">
                             <li><strong>Assistant Manager:</strong> BOC Grocery Store (2022-2024)</li>
                             <li><strong>Accountant:</strong> SLK Textile (2020-2021)</li>
                         </ul>
                     </div>
                 </div>
-                <div class="stat-card rounded-lg">
+                <div class="stat-card bg-card">
                     <div class="stat-header">
                         <div>
                             <p class="text-4xl font-extrabold text-accent">10+</p>
-                            <p class="text-gray-400 font-medium mt-1">Certifications & Courses</p>
+                            <p class="text-gray-500 font-medium mt-1">Certifications & Courses</p>
                         </div>
                         <i class="fas fa-plus text-accent plus-icon"></i>
                     </div>
                     <div class="stat-details">
-                         <ul class="space-y-2 text-gray-300 border-t border-gray-600 pt-4">
+                         <ul class="space-y-2 text-gray-600 pt-4">
                             <li><strong>Key Institutions:</strong> Harvard, Stanford, Google, PwC</li>
                             <li><strong>Focus Areas:</strong> Data Analysis, UX Design, Finance, Network Security</li>
                         </ul>
                     </div>
                 </div>
-                <div class="stat-card rounded-lg">
+                <div class="stat-card bg-card">
                     <div class="stat-header">
                         <div>
                             <p class="text-4xl font-extrabold text-accent">3</p>
-                            <p class="text-gray-400 font-medium mt-1">Languages Spoken</p>
+                            <p class="text-gray-500 font-medium mt-1">Languages Spoken</p>
                         </div>
                         <i class="fas fa-plus text-accent plus-icon"></i>
                     </div>
                     <div class="stat-details">
-                         <ul class="space-y-2 text-gray-300 border-t border-gray-600 pt-4">
+                         <ul class="space-y-2 text-gray-600 pt-4">
                             <li><strong>Burmese:</strong> Native</li>
                             <li><strong>English:</strong> Fluent</li>
                             <li><strong>Chinese:</strong> HSK 3</li>
@@ -166,37 +179,37 @@
         <section id="initiatives" class="section-container">
             <h2 class="section-title reveal" data-animation="fade-in">Highlights & <span>Initiatives</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-card p-6 rounded-xl text-center reveal" data-animation="fade-in">
+                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
                     <div class="text-accent text-4xl mb-4"><i class="fas fa-users-rays"></i></div>
-                    <h3 class="text-xl font-bold text-white">YSEALI Youth Event</h3>
-                    <p class="text-gray-400 mt-2">Served as a content writer for a YSEALI event, contributing to community engagement and youth leadership development supported by the U.S. Government.</p>
+                    <h3 class="text-xl font-bold text-gray-800">YSEALI Youth Event</h3>
+                    <p class="text-gray-600 mt-2">Served as a content writer for a YSEALI event, contributing to community engagement and youth leadership development supported by the U.S. Government.</p>
                 </div>
-                <div class="bg-card p-6 rounded-xl text-center reveal" data-animation="fade-in">
+                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
                     <div class="text-accent text-4xl mb-4"><i class="fas fa-language"></i></div>
-                    <h3 class="text-xl font-bold text-white">TED Talks Translator</h3>
-                    <p class="text-gray-400 mt-2">Volunteered as an English-Burmese translator and subtitler, making impactful global ideas accessible to a wider audience through non-profit media.</p>
+                    <h3 class="text-xl font-bold text-gray-800">TED Talks Translator</h3>
+                    <p class="text-gray-600 mt-2">Volunteered as an English-Burmese translator and subtitler, making impactful global ideas accessible to a wider audience through non-profit media.</p>
                 </div>
-                <div class="bg-card p-6 rounded-xl text-center reveal" data-animation="fade-in">
+                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
                      <div class="text-accent text-4xl mb-4"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-xl font-bold text-white">Innovation Hackathon</h3>
-                    <p class="text-gray-400 mt-2">Participated in the Doh Phandee Open Innovation Hackathon, collaborating on solutions to address food security challenges and drive social impact.</p>
+                    <h3 class="text-xl font-bold text-gray-800">Innovation Hackathon</h3>
+                    <p class="text-gray-600 mt-2">Participated in the Doh Phandee Open Innovation Hackathon, collaborating on solutions to address food security challenges and drive social impact.</p>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="section-container">
             <h2 class="section-title reveal" data-animation="fade-in">Skills & <span>Expertise</span></h2>
-            <div class="max-w-4xl mx-auto bg-card p-8 rounded-xl" data-animation="stagger-fade-in">
+            <div class="bg-card p-8" data-animation="stagger-fade-in">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-6 text-center">Technical Skills</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h3>
                         <div class="space-y-6">
                             <div class="skill-item">
                                 <div class="flex items-center gap-4">
                                     <i class="fab fa-python text-accent text-3xl w-8 text-center"></i>
                                     <div>
-                                        <p class="font-semibold text-white">Python</p>
-                                        <p class="text-sm text-gray-400">For data analysis and backend scripting.</p>
+                                        <p class="font-semibold text-gray-800">Python</p>
+                                        <p class="text-sm text-gray-600">For data analysis and backend scripting.</p>
                                     </div>
                                 </div>
                             </div>
@@ -204,8 +217,8 @@
                                 <div class="flex items-center gap-4">
                                     <i class="fab fa-java text-accent text-3xl w-8 text-center"></i>
                                     <div>
-                                        <p class="font-semibold text-white">Java</p>
-                                        <p class="text-sm text-gray-400">For building robust applications and systems.</p>
+                                        <p class="font-semibold text-gray-800">Java</p>
+                                        <p class="text-sm text-gray-600">For building robust applications and systems.</p>
                                     </div>
                                 </div>
                             </div>
@@ -216,8 +229,8 @@
                                         <path d="M13.4391 13.866L5.93915 21.366C5.44018 21.865 5.74177 22.7321 6.43915 22.7321H13.4391V27.634C13.4391 28.2435 14.2045 28.5458 14.6339 28.1164L21.5609 21.1893C22.0598 20.6904 21.7582 19.8232 21.0609 19.8232H13.4391V13.866Z"/>
                                     </svg>
                                     <div>
-                                        <p class="font-semibold text-white">Flutter</p>
-                                        <p class="text-sm text-gray-400">For creating cross-platform mobile apps.</p>
+                                        <p class="font-semibold text-gray-800">Flutter</p>
+                                        <p class="text-sm text-gray-600">For creating cross-platform mobile apps.</p>
                                     </div>
                                 </div>
                             </div>
@@ -225,22 +238,22 @@
                                 <div class="flex items-center gap-4">
                                     <i class="fab fa-html5 text-accent text-3xl w-8 text-center"></i>
                                     <div>
-                                        <p class="font-semibold text-white">HTML5 & CSS3</p>
-                                        <p class="text-sm text-gray-400">The foundation of modern web development.</p>
+                                        <p class="font-semibold text-gray-800">HTML5 & CSS3</p>
+                                        <p class="text-sm text-gray-600">The foundation of modern web development.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-6 text-center">Professional Skills</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Professional Skills</h3>
                         <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Accounting & Finance</span>
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Financial Management</span>
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Team Leadership</span>
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Data Analysis</span>
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Analytical Thinking</span>
-                            <span class="skill-item bg-gray-700 text-gray-200 text-base font-medium px-4 py-2 rounded-full">Customer Service</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Accounting & Finance</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Financial Management</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Team Leadership</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Data Analysis</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Analytical Thinking</span>
+                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Customer Service</span>
                         </div>
                     </div>
                 </div>
@@ -249,7 +262,7 @@
 
         <section id="contact" class="section-container text-center">
              <h2 class="section-title reveal" data-animation="fade-in">Let's Build Something <span>Together</span></h2>
-             <p class="max-w-2xl mx-auto text-lg text-gray-400 mb-8 reveal" data-animation="fade-in">
+             <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8 reveal" data-animation="fade-in">
                 I'm always excited to connect with new people and explore new opportunities. If you have a project in mind or just want to chat, feel free to reach out.
             </p>
             <div class="reveal" data-animation="fade-in">
@@ -260,7 +273,7 @@
         </section>
     </div>
     
-    <footer class="text-center py-8 bg-gray-800/50 mt-12">
+    <footer class="text-center py-8 mt-12 border-t border-gray-200">
         <p class="text-gray-500">Designed and built by Wai Yan Tun Oo.</p>
     </footer>
 
@@ -280,16 +293,18 @@
                 const header = card.querySelector('.stat-header');
                 header.addEventListener('click', () => {
                     const isActive = card.classList.contains('is-active');
+                    
                     statCards.forEach(c => c.classList.remove('is-active'));
-                    if (!isActive) card.classList.add('is-active');
+                    if (!isActive) {
+                        card.classList.add('is-active');
+                    }
                 });
             });
 
             // --- Optimized Scroll Animation Logic ---
             const animationMap = {
-                'fade-in': { opacity: [0, 1], translateY: [30, 0] },
-                'stagger-fade-in': { opacity: [0, 1], translateY: [30, 0], delay: anime.stagger(150) },
-                'stagger-scale-in': { opacity: [0, 1], scale: [0.5, 1], delay: anime.stagger(100) }
+                'fade-in': { opacity: [0, 1], translateY: [20, 0] },
+                'stagger-fade-in': { opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(120) }
             };
 
             const observer = new IntersectionObserver((entries, obs) => {
@@ -298,15 +313,11 @@
                         const el = entry.target;
                         const animationType = el.dataset.animation || 'fade-in';
                         
-                        let targets = el;
-                        // Correctly select children for staggered animations
+                        let targets;
                         if (animationType.includes('stagger')) {
-                            // The parent container still needs to be made visible
-                            el.style.opacity = 1; 
-                            const staggerTargets = el.querySelectorAll('.stat-card, .bg-card, .skill-item');
-                            if (staggerTargets.length > 0) {
-                                targets = staggerTargets;
-                            }
+                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item');
+                        } else {
+                            targets = el;
                         }
                         
                         anime({
@@ -320,7 +331,7 @@
                         obs.unobserve(el);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.1 });
 
             document.querySelectorAll('[data-animation]').forEach(el => {
                 observer.observe(el);
