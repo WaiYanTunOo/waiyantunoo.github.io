@@ -53,7 +53,7 @@
         
         /* --- Animation & Interactive States --- */
         .reveal { opacity: 0; }
-        .hero-anim, .skill-item { opacity: 0; }
+        .hero-anim, .skill-item, .project-card { opacity: 0; }
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -117,7 +117,7 @@
             <div class="hero-anim hero-image-container flex justify-center">
                 <div class="relative w-72 h-72 sm:w-80 sm:h-80 floating-image">
                     <div class="absolute inset-0 bg-white rounded-full shadow-lg p-2 border-2 border-gray-200">
-                        <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                     
+                        <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                      
                 </div>
             </div>
         </div>
@@ -260,6 +260,19 @@
             </div>
         </section>
 
+        <section id="projects" class="section-container">
+            <h2 class="section-title reveal" data-animation="fade-in">My <span>Projects</span></h2>
+            <div class="flex justify-center" data-animation="stagger-fade-in">
+                <div class="project-card bg-card p-6 max-w-sm flex flex-col text-center">
+                    <div class="text-accent text-5xl mb-4"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800">SCI Currency Converter</h3>
+                    <p class="text-gray-600 mt-2 flex-grow">A sleek, real-time currency converter application built with modern web technologies to provide up-to-date exchange rates.</p>
+                    <a href="https://sciexchange.netlify.app/" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block bg-accent text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-accent-dark transition-colors duration-300">
+                        View Project
+                    </a>
+                </div>
+            </div>
+        </section>
         <section id="contact" class="section-container text-center">
              <h2 class="section-title reveal" data-animation="fade-in">Let's Build Something <span>Together</span></h2>
              <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8 reveal" data-animation="fade-in">
@@ -315,7 +328,8 @@
                         
                         let targets;
                         if (animationType.includes('stagger')) {
-                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item');
+                            // Updated selector to include new project-card
+                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item, .project-card');
                         } else {
                             targets = el;
                         }
