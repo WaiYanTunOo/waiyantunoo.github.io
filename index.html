@@ -38,10 +38,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .bg-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
-        .section-container { padding: 6rem 0; }
+        .section-container { padding: 5rem 0; }
         .section-title {
             font-size: 2.25rem;
             font-weight: 800;
@@ -53,7 +53,7 @@
         
         /* --- Animation & Interactive States --- */
         .reveal { opacity: 0; }
-        .hero-anim, .skill-item, .project-card { opacity: 0; }
+        .hero-anim, .skill-item, .project-card, .timeline-item { opacity: 0; }
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -98,17 +98,39 @@
         .stat-details ul {
             border-top: 1px solid #dee2e6;
         }
+
+        /* Timeline Styles */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0d6efd;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 2px #0d6efd;
+        }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- HERO SECTION -->
     <section class="min-h-screen flex items-center justify-center py-20">
         <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
             <div class="text-center md:text-left">
                 <h1 class="hero-anim hero-name text-4xl md:text-6xl font-extrabold text-[#212529]">Wai Yan Tun Oo</h1>
-                <p class="hero-anim hero-subtitle text-xl md:text-2xl text-accent font-semibold mt-4">Analytical Thinker &bull; Problem Solver &bull; Finance Professional</p>
+                <p class="hero-anim hero-subtitle text-xl md:text-2xl text-accent font-semibold mt-4">Accountant &bull; Mathematician &bull; Data Enthusiast</p>
                 <p class="hero-anim hero-description max-w-2xl md:max-w-md mx-auto md:mx-0 mt-6 text-lg text-gray-600">
-                    A versatile professional bridging the gap between finance and technology with a passion for programming and data-driven solutions.
+                    A motivated, detail-oriented professional with a strong academic foundation in mathematics and finance. I bridge the gap between pure 18th-century mathematics and 21st-century Data Science.
                 </p>
                 <a href="#contact" class="hero-anim hero-button mt-8 inline-block bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-accent-dark transition-transform duration-300 hover:scale-105">
                     Let's Connect
@@ -117,170 +139,227 @@
             <div class="hero-anim hero-image-container flex justify-center">
                 <div class="relative w-72 h-72 sm:w-80 sm:h-80 floating-image">
                     <div class="absolute inset-0 bg-white rounded-full shadow-lg p-2 border-2 border-gray-200">
-                        <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                      
-                </div>
+                         <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                                       
+                    </div>
             </div>
         </div>
     </section>
 
     <div class="container mx-auto px-6">
 
+        <!-- QUICK STATS -->
         <section id="stats" class="pb-16" data-animation="stagger-fade-in">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="stat-card bg-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent">4</p>
-                            <p class="text-gray-500 font-medium mt-1">Years of Experience</p>
+                <div class="stat-card bg-card p-6 text-center">
+                    <p class="text-4xl font-extrabold text-accent">4+</p>
+                    <p class="text-gray-500 font-medium mt-1">Years Experience</p>
+                </div>
+                <div class="stat-card bg-card p-6 text-center">
+                    <p class="text-4xl font-extrabold text-accent">3</p>
+                    <p class="text-gray-500 font-medium mt-1">Degrees & Diplomas</p>
+                </div>
+                <div class="stat-card bg-card p-6 text-center">
+                    <p class="text-4xl font-extrabold text-accent">3</p>
+                    <p class="text-gray-500 font-medium mt-1">Languages (Eng, Bur, Chi)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECT: THE EULER CODE -->
+        <section id="projects" class="section-container pt-0">
+            <h2 class="section-title reveal" data-animation="fade-in">Featured <span>Work</span></h2>
+            
+            <div class="project-card bg-card p-8 w-full mx-auto mb-12 relative overflow-hidden shadow-lg border-t-4 border-blue-600" data-animation="fade-in">
+                <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Research Series</div>
+                <div class="md:flex gap-8 items-start">
+                    <div class="md:w-3/4">
+                        <div class="flex items-baseline gap-3 mb-2">
+                             <h3 class="text-3xl font-extrabold text-gray-800">The Euler Code</h3>
                         </div>
-                        <i class="fas fa-plus text-accent plus-icon"></i>
+                       
+                        <p class="text-accent font-semibold text-lg mb-4">From decoding the basics of Calculus to unlocking the black box of Artificial Intelligence.</p>
+                        
+                        <div class="prose text-gray-600 mb-6 leading-relaxed">
+                            <p class="mb-4">
+                                I am currently adapting my thesis into a 12-part exclusive Series on Medium. Standing at the intersection where pure 18th-century mathematics meets 21st-century Data Science at the <strong>Freedom Education Program</strong>, this project doesn't just solve equations; it looks for the stories hidden inside them.
+                            </p>
+                            <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-accent mb-5">
+                                <h4 class="font-bold text-gray-800 mb-2 flex items-center"><i class="fas fa-search-plus mr-2"></i> Why This Matters</h4>
+                                <p class="text-sm text-gray-700">My latest research, "Connecting the Dots," reveals that timeless functions like Gamma and Beta are actually the keys to fixing one of the biggest problems in modern tech: <strong>AI Uncertainty</strong>.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="inline-flex items-center bg-gray-900 text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-gray-700 transition-colors duration-300">
+                                <i class="fab fa-medium mr-2"></i> Read on Medium
+                            </a>
+                        </div>
                     </div>
-                    <div class="stat-details">
-                        <ul class="space-y-2 text-gray-600 pt-4">
-                            <li><strong>Assistant Manager:</strong> BOC Grocery Store (2022-2024)</li>
-                            <li><strong>Accountant:</strong> SLK Textile (2020-2021)</li>
-                        </ul>
+                    <div class="hidden md:flex md:w-1/4 justify-center items-center self-center pt-8 md:pt-0">
+                       <div class="text-accent text-opacity-10 text-9xl">
+                           <i class="fas fa-brain"></i>
+                       </div>
                     </div>
                 </div>
-                <div class="stat-card bg-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent">10+</p>
-                            <p class="text-gray-500 font-medium mt-1">Certifications & Courses</p>
+            </div>
+
+            <!-- SCI Currency Converter -->
+            <div class="project-card bg-card p-8 w-full mx-auto relative overflow-hidden shadow-lg border-t-4 border-green-500" data-animation="fade-in">
+                <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Web App</div>
+                <div class="md:flex gap-8 items-center">
+                    <div class="md:w-3/4">
+                         <div class="flex items-baseline gap-3 mb-2">
+                            <h3 class="text-3xl font-extrabold text-gray-800">SCI Currency Converter</h3>
                         </div>
-                        <i class="fas fa-plus text-accent plus-icon"></i>
+                        <p class="text-green-600 font-semibold text-lg mb-4">Real-time financial tools for the modern web.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            A sleek, responsive currency converter application built to provide up-to-date exchange rates for global currencies. This project demonstrates practical application of modern web technologies to solve everyday financial needs.
+                        </p>
+                        <a href="https://sciexchange.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-green-700 transition-colors duration-300">
+                            Visit Website <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                        </a>
                     </div>
-                    <div class="stat-details">
-                         <ul class="space-y-2 text-gray-600 pt-4">
-                            <li><strong>Key Institutions:</strong> Harvard, Stanford, Google, PwC</li>
-                            <li><strong>Focus Areas:</strong> Data Analysis, UX Design, Finance, Network Security</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="stat-card bg-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="text-4xl font-extrabold text-accent">3</p>
-                            <p class="text-gray-500 font-medium mt-1">Languages Spoken</p>
+                    <div class="hidden md:flex md:w-1/4 justify-center">
+                         <div class="text-green-500 text-opacity-20 text-8xl">
+                            <i class="fas fa-exchange-alt"></i>
                         </div>
-                        <i class="fas fa-plus text-accent plus-icon"></i>
-                    </div>
-                    <div class="stat-details">
-                         <ul class="space-y-2 text-gray-600 pt-4">
-                            <li><strong>Burmese:</strong> Native</li>
-                            <li><strong>English:</strong> Fluent</li>
-                            <li><strong>Chinese:</strong> HSK 3</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="initiatives" class="section-container">
-            <h2 class="section-title reveal" data-animation="fade-in">Highlights & <span>Initiatives</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-users-rays"></i></div>
-                    <h3 class="text-xl font-bold text-gray-800">YSEALI Youth Event</h3>
-                    <p class="text-gray-600 mt-2">Served as a content writer for a YSEALI event, contributing to community engagement and youth leadership development supported by the U.S. Government.</p>
+        <!-- WORK EXPERIENCE -->
+        <section id="experience" class="section-container">
+            <h2 class="section-title reveal" data-animation="fade-in">Work <span>Experience</span></h2>
+            <div class="relative pl-8 md:pl-0 max-w-4xl mx-auto" data-animation="stagger-fade-in">
+                
+                <!-- Role 1 -->
+                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12">
+                    <div class="hidden md:block absolute -left-12 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-accent border-4 border-white shadow-sm"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Assistant Manager</h3>
+                            <p class="text-accent font-semibold">BOC Grocery Store</p>
+                        </div>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0">2022 - 2024</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Assisted in daily store operations, staff supervision, and training to drive performance.</li>
+                        <li>Oversaw inventory, ordering, and stock management to ensure product availability.</li>
+                        <li>Maintained compliance with health and safety standards while ensuring excellent customer service.</li>
+                        <li>Handled cash management, sales goal support, and promotional implementation.</li>
+                    </ul>
                 </div>
-                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
-                    <div class="text-accent text-4xl mb-4"><i class="fas fa-language"></i></div>
-                    <h3 class="text-xl font-bold text-gray-800">TED Talks Translator</h3>
-                    <p class="text-gray-600 mt-2">Volunteered as an English-Burmese translator and subtitler, making impactful global ideas accessible to a wider audience through non-profit media.</p>
+
+                <!-- Role 2 -->
+                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12">
+                    <div class="hidden md:block absolute -left-12 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-accent border-4 border-white shadow-sm"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Accountant</h3>
+                            <p class="text-accent font-semibold">SLK Textile Co Ltd.</p>
+                        </div>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0">2020 - 2021</span>
+                    </div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Assisted with financial reporting, bookkeeping, and maintaining accurate financial documentation.</li>
+                        <li>Prepared and processed invoices, payments, and bank reconciliations.</li>
+                        <li>Supported budgeting, forecasting, and financial analysis for strategic planning.</li>
+                        <li>Collaborated with senior management on month-end and year-end closings.</li>
+                    </ul>
                 </div>
-                <div class="bg-card p-6 text-center reveal" data-animation="fade-in">
-                     <div class="text-accent text-4xl mb-4"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-xl font-bold text-gray-800">Innovation Hackathon</h3>
-                    <p class="text-gray-600 mt-2">Participated in the Doh Phandee Open Innovation Hackathon, collaborating on solutions to address food security challenges and drive social impact.</p>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="section-container">
+            <h2 class="section-title reveal" data-animation="fade-in">Education</h2>
+            <div class="grid md:grid-cols-3 gap-6" data-animation="stagger-fade-in">
+                <div class="bg-card p-6 text-center border-b-4 border-accent">
+                    <div class="text-accent text-3xl mb-3"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="font-bold text-lg">ACCA Part-1</h3>
+                    <p class="text-gray-500 text-sm mt-1">2021</p>
+                </div>
+                <div class="bg-card p-6 text-center border-b-4 border-accent">
+                    <div class="text-accent text-3xl mb-3"><i class="fas fa-university"></i></div>
+                    <h3 class="font-bold text-lg">B.Sc (Hons) Mathematics</h3>
+                    <p class="text-gray-500 text-sm mt-1">West Yangon University, 2020</p>
+                </div>
+                <div class="bg-card p-6 text-center border-b-4 border-accent">
+                    <div class="text-accent text-3xl mb-3"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3 class="font-bold text-lg">UK Diploma in Accounting</h3>
+                    <p class="text-gray-500 text-sm mt-1">2019</p>
                 </div>
             </div>
         </section>
 
+        <!-- SKILLS & CERTIFICATIONS -->
         <section id="skills" class="section-container">
-            <h2 class="section-title reveal" data-animation="fade-in">Skills & <span>Expertise</span></h2>
+            <h2 class="section-title reveal" data-animation="fade-in">Skills & <span>Certifications</span></h2>
             <div class="bg-card p-8" data-animation="stagger-fade-in">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h3>
-                        <div class="space-y-6">
-                            <div class="skill-item">
-                                <div class="flex items-center gap-4">
-                                    <i class="fab fa-python text-accent text-3xl w-8 text-center"></i>
-                                    <div>
-                                        <p class="font-semibold text-gray-800">Python</p>
-                                        <p class="text-sm text-gray-600">For data analysis and backend scripting.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="flex items-center gap-4">
-                                    <i class="fab fa-java text-accent text-3xl w-8 text-center"></i>
-                                    <div>
-                                        <p class="font-semibold text-gray-800">Java</p>
-                                        <p class="text-sm text-gray-600">For building robust applications and systems.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="flex items-center gap-4">
-                                    <svg class="w-8 h-8 text-accent" viewBox="0 0 22 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.4391 0.366025L0.939148 12.866C0.44018 13.365 0.741768 14.2321 1.43915 14.2321H13.4391L5.93915 21.7321L17.4391 10.2321H21.0609C21.7582 10.2321 22.0598 9.36501 21.5609 8.86603L13.4391 0.366025Z"/>
-                                        <path d="M13.4391 13.866L5.93915 21.366C5.44018 21.865 5.74177 22.7321 6.43915 22.7321H13.4391V27.634C13.4391 28.2435 14.2045 28.5458 14.6339 28.1164L21.5609 21.1893C22.0598 20.6904 21.7582 19.8232 21.0609 19.8232H13.4391V13.866Z"/>
-                                    </svg>
-                                    <div>
-                                        <p class="font-semibold text-gray-800">Flutter</p>
-                                        <p class="text-sm text-gray-600">For creating cross-platform mobile apps.</p>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="skill-item">
-                                <div class="flex items-center gap-4">
-                                    <i class="fab fa-html5 text-accent text-3xl w-8 text-center"></i>
-                                    <div>
-                                        <p class="font-semibold text-gray-800">HTML5 & CSS3</p>
-                                        <p class="text-sm text-gray-600">The foundation of modern web development.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Technical & Core Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Accounting</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Financial Management</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Data Analysis (Excel)</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Java</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Graphic Design</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Network Security</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Digital Marketing</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Professional Skills</h3>
-                        <div class="flex flex-wrap justify-center gap-3">
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Accounting & Finance</span>
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Financial Management</span>
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Team Leadership</span>
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Data Analysis</span>
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Analytical Thinking</span>
-                            <span class="skill-item bg-gray-200 text-gray-800 text-base font-medium px-4 py-2 rounded-full">Customer Service</span>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Certifications</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Harvard & Stanford:</strong> Probability, Mathematical Thinking</span></li>
+                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>PwC:</strong> Accounting & Finance</span></li>
+                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Google:</strong> Network Security, Data Analysis, UX Design</span></li>
+                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Pearson:</strong> Business Communication</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section-container">
-            <h2 class="section-title reveal" data-animation="fade-in">My <span>Projects</span></h2>
-            <div class="flex justify-center" data-animation="stagger-fade-in">
-                <div class="project-card bg-card p-6 max-w-sm flex flex-col text-center">
-                    <div class="text-accent text-5xl mb-4"><i class="fas fa-exchange-alt"></i></div>
-                    <h3 class="text-xl font-bold text-gray-800">SCI Currency Converter</h3>
-                    <p class="text-gray-600 mt-2 flex-grow">A sleek, real-time currency converter application built with modern web technologies to provide up-to-date exchange rates.</p>
-                    <a href="https://sciexchange.netlify.app/" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block bg-accent text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-accent-dark transition-colors duration-300">
-                        View Website
-                    </a>
+        <!-- HIGHLIGHTS & AWARDS -->
+        <section id="initiatives" class="section-container pt-0">
+            <h2 class="section-title reveal" data-animation="fade-in">Highlights & <span>Awards</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-card p-6 reveal" data-animation="fade-in">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-trophy text-yellow-500 mr-2"></i> Academic Excellence</h3>
+                    <ul class="text-gray-600 space-y-2">
+                         <li>Hardworking Student & Outstanding Mathematics Prizes</li>
+                         <li>Full Scholarship (Nay Lin Aung Finance & Accountancy Academy)</li>
+                    </ul>
+                </div>
+                <div class="bg-card p-6 reveal" data-animation="fade-in">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-hand-holding-heart text-red-500 mr-2"></i> Social Impact</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><strong>TED Talks:</strong> English-Burmese Translator</li>
+                        <li><strong>YSEALI Youth Event:</strong> Content Writer</li>
+                        <li><strong>Innovation Hackathon:</strong> Food Security Solutions (Doh Phandee)</li>
+                    </ul>
                 </div>
             </div>
         </section>
+
+        <!-- CONTACT -->
         <section id="contact" class="section-container text-center">
              <h2 class="section-title reveal" data-animation="fade-in">Let's Build Something <span>Together</span></h2>
              <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8 reveal" data-animation="fade-in">
                 I'm always excited to connect with new people and explore new opportunities. If you have a project in mind or just want to chat, feel free to reach out.
             </p>
             <div class="reveal" data-animation="fade-in">
-                <a href="mailto:waiyan96174@gmail.com" class="text-2xl font-bold text-accent hover:underline">
-                    waiyan96174@gmail.com
+                <a href="mailto:waiyantunoo.mm@gmail.com" class="text-2xl font-bold text-accent hover:underline break-all">
+                    waiyantunoo.mm@gmail.com
                 </a>
             </div>
         </section>
@@ -300,20 +379,6 @@
             .add({ targets: '.hero-description', opacity: [0, 1], translateY: [30, 0] }, '-=900')
             .add({ targets: '.hero-button', opacity: [0, 1], translateY: [30, 0] }, '-=900');
 
-            // --- Interactive Stats Section Logic ---
-            const statCards = document.querySelectorAll('.stat-card');
-            statCards.forEach(card => {
-                const header = card.querySelector('.stat-header');
-                header.addEventListener('click', () => {
-                    const isActive = card.classList.contains('is-active');
-                    
-                    statCards.forEach(c => c.classList.remove('is-active'));
-                    if (!isActive) {
-                        card.classList.add('is-active');
-                    }
-                });
-            });
-
             // --- Optimized Scroll Animation Logic ---
             const animationMap = {
                 'fade-in': { opacity: [0, 1], translateY: [20, 0] },
@@ -328,8 +393,7 @@
                         
                         let targets;
                         if (animationType.includes('stagger')) {
-                            // Updated selector to include new project-card
-                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item, .project-card');
+                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item, .project-card, .timeline-item');
                         } else {
                             targets = el;
                         }
