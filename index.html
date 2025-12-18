@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wai Yan Tun Oo - Personal Portfolio</title>
+    <title>Wai Yan Tun Oo (Sky) - Portfolio</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -16,31 +16,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <style>
-        /* --- Base & Typography (Bright & Clean Theme) --- */
+        /* --- Base & Typography --- */
         body {
-            background-color: #f8f9fa; /* Light, clean background */
-            color: #343a40; /* Dark text for readability */
+            background-color: #f8f9fa;
+            color: #343a40;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* --- General Styles & Components (Classic Theme) --- */
-        .text-accent { color: #0d6efd; } /* Classic, professional blue */
+        /* --- Theme Colors --- */
+        .text-accent { color: #0d6efd; }
         .bg-accent { background-color: #0d6efd; }
         .hover\:bg-accent-dark:hover { background-color: #0b5ed7; }
         
-        /* Classic Card Effect */
+        /* --- Card Styles --- */
         .bg-card {
             background-color: #ffffff;
             border: 1px solid #e9ecef;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .bg-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        
+        /* --- Layout & Typography --- */
         .section-container { padding: 5rem 0; }
         .section-title {
             font-size: 2.25rem;
@@ -51,55 +54,17 @@
         }
         .section-title span { color: #0d6efd; }
         
-        /* --- Animation & Interactive States --- */
-        .reveal { opacity: 0; }
-        .hero-anim, .skill-item, .project-card, .timeline-item { opacity: 0; }
+        /* --- Animations --- */
+        .reveal, .hero-anim { opacity: 0; }
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
         .floating-image { animation: float 6s ease-in-out infinite; }
-        
-        /* Interactive Stats Section */
-        .stat-card {
-            border-radius: 0.5rem; /* rounded-lg */
-            transition: background-color 0.3s ease;
-        }
-        .stat-header { 
-            padding: 1.5rem; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            border-radius: 0.5rem;
-        }
-        .stat-header:hover { background-color: #f1f3f5; }
-        .stat-details { 
-            max-height: 0; 
-            opacity: 0; 
-            overflow: hidden; 
-            transition: all 0.5s ease-in-out; 
-            padding: 0 1.5rem; 
-        }
-        .stat-card.is-active .stat-details { 
-            max-height: 500px; 
-            opacity: 1; 
-            padding: 0 1.5rem 1.5rem 1.5rem; 
-        }
-        .is-active .stat-header {
-             background-color: #f1f3f5;
-        }
-        .plus-icon { 
-            transition: transform 0.4s ease; 
-            font-size: 1.5rem; 
-        }
-        .stat-card.is-active .plus-icon { transform: rotate(45deg); }
-        .stat-details ul {
-            border-top: 1px solid #dee2e6;
-        }
 
-        /* Timeline Styles */
+        /* --- Timeline --- */
         .timeline-line {
             position: absolute;
             left: 20px;
@@ -108,40 +73,82 @@
             width: 2px;
             background-color: #e9ecef;
         }
-        .timeline-dot {
-            position: absolute;
-            left: 11px;
-            top: 24px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #0d6efd;
-            border: 4px solid #fff;
-            box-shadow: 0 0 0 2px #0d6efd;
+        
+        /* --- Mobile Menu --- */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+        
+        /* --- Scrollbar --- */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="text-xl font-extrabold text-gray-800 tracking-tight">Wai Yan Tun <span class="text-accent">Oo</span></a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex gap-8 font-medium text-gray-600 text-sm">
+                    <a href="#about" class="hover:text-accent transition-colors">About</a>
+                    <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
+                    <a href="#experience" class="hover:text-accent transition-colors">Experience</a>
+                    <a href="#education" class="hover:text-accent transition-colors">Education</a>
+                    <a href="#skills" class="hover:text-accent transition-colors">Skills</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-gray-600 focus:outline-none p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="md:hidden flex flex-col items-center gap-4 py-4 mt-2 border-t border-gray-100 bg-gray-50 rounded-lg">
+                <a href="#about" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">About</a>
+                <a href="#projects" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Projects</a>
+                <a href="#experience" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Experience</a>
+                <a href="#education" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Education</a>
+                <a href="#skills" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Skills</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center py-20">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-            <div class="text-center md:text-left">
-                <h1 class="hero-anim hero-name text-4xl md:text-6xl font-extrabold text-[#212529]">Wai Yan Tun Oo</h1>
-                <p class="hero-anim hero-subtitle text-xl md:text-2xl text-accent font-semibold mt-4">Accountant &bull; Mathematician &bull; Data Enthusiast</p>
-                <p class="hero-anim hero-description max-w-2xl md:max-w-md mx-auto md:mx-0 mt-6 text-lg text-gray-600">
-                    A motivated, detail-oriented professional with a strong academic foundation in mathematics and finance. I bridge the gap between pure 18th-century mathematics and 21st-century Data Science.
+    <section id="about" class="min-h-screen flex items-center justify-center py-20 pt-32">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left order-2 md:order-1">
+                <h1 class="hero-anim text-4xl lg:text-6xl font-extrabold text-[#212529] leading-tight">Wai Yan Tun Oo <span class="text-accent block lg:inline text-3xl lg:text-5xl font-bold">(Sky)</span></h1>
+                <p class="hero-anim text-lg text-gray-400 font-bold mb-1 mt-2">刘炳川</p>
+                <p class="hero-anim text-xl lg:text-2xl text-accent font-semibold mt-2">Software Engineering &bull; Accounting &bull; Management</p>
+                <p class="hero-anim max-w-2xl md:max-w-md mx-auto md:mx-0 mt-6 text-lg text-gray-600 leading-relaxed">
+                    A versatile professional standing at the intersection of modern finance and advanced technology. I combine the rigour of an Accountant (ACCA/LCCI) with the innovation of a Software Engineer. My passion lies in building scalable systems—whether financial frameworks or software applications—that solve real-world problems.
                 </p>
-                <a href="#contact" class="hero-anim hero-button mt-8 inline-block bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-accent-dark transition-transform duration-300 hover:scale-105">
-                    Let's Connect
-                </a>
+                <div class="hero-anim flex flex-wrap gap-4 justify-center md:justify-start mt-8">
+                    <a href="https://www.linkedin.com/in/waiyantunoo/" target="_blank" class="bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105 shadow-lg shadow-blue-500/30 flex items-center">
+                        <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                    </a>
+                </div>
             </div>
-            <div class="hero-anim hero-image-container flex justify-center">
-                <div class="relative w-72 h-72 sm:w-80 sm:h-80 floating-image">
-                    <div class="absolute inset-0 bg-white rounded-full shadow-lg p-2 border-2 border-gray-200">
-                         <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full">                                       
-                    </div>
-            </div>
+
+<div class="hero-anim hero-image-container flex justify-center"><div class="relative w-72 h-72 sm:w-80 sm:h-80 floating-image"><div class="absolute inset-0 bg-white rounded-full shadow-lg p-2 border-2 border-gray-200"><img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full"></div></div></div>
+
+            
+    
         </div>
     </section>
 
@@ -149,83 +156,122 @@
 
         <!-- QUICK STATS -->
         <section id="stats" class="pb-16" data-animation="stagger-fade-in">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="stat-card bg-card p-6 text-center">
-                    <p class="text-4xl font-extrabold text-accent">4+</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card bg-card p-6 text-center group hover:border-accent">
+                    <p class="text-4xl font-extrabold text-gray-800 group-hover:text-accent transition-colors">4+</p>
                     <p class="text-gray-500 font-medium mt-1">Years Experience</p>
                 </div>
-                <div class="stat-card bg-card p-6 text-center">
-                    <p class="text-4xl font-extrabold text-accent">3</p>
-                    <p class="text-gray-500 font-medium mt-1">Degrees & Diplomas</p>
+                <div class="stat-card bg-card p-6 text-center group hover:border-accent">
+                    <p class="text-4xl font-extrabold text-gray-800 group-hover:text-accent transition-colors">20+</p>
+                    <p class="text-gray-500 font-medium mt-1">Certifications</p>
                 </div>
-                <div class="stat-card bg-card p-6 text-center">
-                    <p class="text-4xl font-extrabold text-accent">3</p>
-                    <p class="text-gray-500 font-medium mt-1">Languages (Eng, Bur, Chi)</p>
+                <div class="stat-card bg-card p-6 text-center group hover:border-accent">
+                    <p class="text-4xl font-extrabold text-gray-800 group-hover:text-accent transition-colors">3</p>
+                    <p class="text-gray-500 font-medium mt-1">Languages</p>
                 </div>
             </div>
         </section>
 
-        <!-- FEATURED PROJECT: THE EULER CODE -->
+        <!-- FEATURED PROJECTS & PUBLICATIONS -->
         <section id="projects" class="section-container pt-0">
             <h2 class="section-title reveal" data-animation="fade-in">Featured <span>Work</span></h2>
             
-            <div class="project-card bg-card p-8 w-full mx-auto mb-12 relative overflow-hidden shadow-lg border-t-4 border-blue-600" data-animation="fade-in">
-                <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Research Series</div>
-                <div class="md:flex gap-8 items-start">
+            <!-- SCI Currency Converter -->
+            <div class="project-card bg-card p-8 w-full mx-auto mb-12 relative overflow-hidden shadow-lg border-t-4 border-green-500" data-animation="fade-in">
+                <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg uppercase tracking-wider">Software</div>
+                <div class="md:flex gap-8 items-center">
                     <div class="md:w-3/4">
-                        <div class="flex items-baseline gap-3 mb-2">
-                             <h3 class="text-3xl font-extrabold text-gray-800">The Euler Code</h3>
+                         <div class="flex items-baseline gap-3 mb-2">
+                            <h3 class="text-3xl font-extrabold text-gray-800">SCI Exchange Software</h3>
                         </div>
-                       
-                        <p class="text-accent font-semibold text-lg mb-4">From decoding the basics of Calculus to unlocking the black box of Artificial Intelligence.</p>
-                        
-                        <div class="prose text-gray-600 mb-6 leading-relaxed">
-                            <p class="mb-4">
-                                I am currently adapting my thesis into a 12-part exclusive Series on Medium. Standing at the intersection where pure 18th-century mathematics meets 21st-century Data Science at the <strong>Freedom Education Program</strong>, this project doesn't just solve equations; it looks for the stories hidden inside them.
-                            </p>
-                            <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-accent mb-5">
-                                <h4 class="font-bold text-gray-800 mb-2 flex items-center"><i class="fas fa-search-plus mr-2"></i> Why This Matters</h4>
-                                <p class="text-sm text-gray-700">My latest research, "Connecting the Dots," reveals that timeless functions like Gamma and Beta are actually the keys to fixing one of the biggest problems in modern tech: <strong>AI Uncertainty</strong>.</p>
-                            </div>
+                        <p class="text-green-600 font-semibold text-lg mb-4">Real-time Financial Intelligence Tool.</p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            A sophisticated, cross-platform currency exchange application designed for rapid financial decision-making. Built with modern web technologies to deliver real-time exchange rates, trend analysis, and seamless conversion tools for global users.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">React/JS</span>
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">API Integration</span>
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">Responsive UI</span>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#" class="inline-flex items-center bg-gray-900 text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-gray-700 transition-colors duration-300">
-                                <i class="fab fa-medium mr-2"></i> Read on Medium
-                            </a>
+                        <a href="https://sciexchange.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-green-700 transition-colors duration-300">
+                            Launch Application <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                    <div class="hidden md:flex md:w-1/4 justify-center">
+                         <div class="text-green-500 text-opacity-20 text-8xl">
+                            <i class="fas fa-chart-line"></i>
                         </div>
                     </div>
-                    <div class="hidden md:flex md:w-1/4 justify-center items-center self-center pt-8 md:pt-0">
-                       <div class="text-accent text-opacity-10 text-9xl">
+                </div>
+            </div>
+
+            <!-- The Euler Code -->
+            <div class="project-card bg-card p-8 w-full mx-auto mb-12 relative overflow-hidden shadow-lg border-t-4 border-blue-600" data-animation="fade-in">
+                <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-4 py-1 rounded-bl-lg uppercase tracking-wider">Research Series</div>
+                <div class="md:flex gap-8 items-start">
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-2">The Euler Code</h3>
+                        <p class="text-accent font-semibold text-lg mb-4">Decoding Calculus for Artificial Intelligence.</p>
+                        <div class="prose text-gray-600 mb-6 leading-relaxed">
+                            <p>
+                                A groundbreaking 12-part series adapting my thesis on Gamma and Beta functions. This research bridges 18th-century mathematics with modern AI, proposing novel mathematical frameworks to resolve AI uncertainty.
+                            </p>
+                        </div>
+                        <a href="#" class="inline-flex items-center bg-gray-100 text-gray-800 border border-gray-300 font-semibold py-2 px-6 rounded-full text-sm hover:bg-gray-200 transition-colors duration-300">
+                            <i class="fab fa-medium mr-2"></i> Read on Medium
+                        </a>
+                    </div>
+                    <div class="hidden md:flex md:w-1/4 justify-center items-center self-center">
+                       <div class="text-accent text-opacity-10 text-8xl">
                            <i class="fas fa-brain"></i>
                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- SCI Currency Converter -->
-            <div class="project-card bg-card p-8 w-full mx-auto relative overflow-hidden shadow-lg border-t-4 border-green-500" data-animation="fade-in">
-                <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Web App</div>
-                <div class="md:flex gap-8 items-center">
+            <!-- Book: Calculus As I Know It -->
+            <div class="project-card bg-card p-8 w-full mx-auto mb-12 relative overflow-hidden shadow-lg border-t-4 border-indigo-600" data-animation="fade-in">
+                <div class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-bl-lg uppercase tracking-wider">Publication</div>
+                <div class="md:flex gap-8 items-start">
                     <div class="md:w-3/4">
-                         <div class="flex items-baseline gap-3 mb-2">
-                            <h3 class="text-3xl font-extrabold text-gray-800">SCI Currency Converter</h3>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-2">
+                             <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800">Calculus As I Know It</h3>
+                             <span class="text-sm text-gray-500 italic">(ကျွန်တော်သိသော Calculus)</span>
                         </div>
-                        <p class="text-green-600 font-semibold text-lg mb-4">Real-time financial tools for the modern web.</p>
-                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                            A sleek, responsive currency converter application built to provide up-to-date exchange rates for global currencies. This project demonstrates practical application of modern web technologies to solve everyday financial needs.
-                        </p>
-                        <a href="https://sciexchange.netlify.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 text-white font-semibold py-2 px-6 rounded-full text-base hover:bg-green-700 transition-colors duration-300">
-                            Visit Website <i class="fas fa-external-link-alt ml-2 text-sm"></i>
-                        </a>
+                        <p class="text-indigo-600 font-semibold text-lg mb-4">A Comprehensive Guide in Burmese</p>
+                        
+                        <div class="prose text-gray-600 mb-6 leading-relaxed">
+                            <p class="mb-4">
+                                Authored a definitive 60+ page educational resource that simplifies complex Calculus concepts for Myanmar students, bridging the gap between theoretical math and practical application.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <a href="main.pdf" target="_blank" class="inline-flex items-center bg-gray-900 text-white font-semibold py-2 px-6 rounded-full text-sm hover:bg-gray-700 transition-colors duration-300">
+                                <i class="fas fa-book-open mr-2"></i> Read Book (PDF)
+                            </a>
+                        </div>
                     </div>
-                    <div class="hidden md:flex md:w-1/4 justify-center">
-                         <div class="text-green-500 text-opacity-20 text-8xl">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
+                    <div class="hidden md:flex md:w-1/4 justify-center items-center self-center pt-8 md:pt-0">
+                       <div class="text-indigo-600 text-opacity-10 text-9xl">
+                           <i class="fas fa-square-root-alt"></i>
+                       </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Tech Ecosystem Grid (For other apps) -->
+             <div class="grid md:grid-cols-2 gap-6" data-animation="stagger-fade-in">
+                <div class="bg-card p-6 border-l-4 border-purple-500 hover:bg-purple-50 transition-colors">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2"><i class="fab fa-android text-purple-600 mr-2"></i> Android Ecosystem</h4>
+                    <p class="text-sm text-gray-600">Developed multiple native Android applications focusing on utility and productivity, leveraging Java and Kotlin for optimal performance.</p>
+                </div>
+                <div class="bg-card p-6 border-l-4 border-cyan-500 hover:bg-cyan-50 transition-colors">
+                    <h4 class="font-bold text-lg text-gray-800 mb-2"><i class="fas fa-mobile-alt text-cyan-600 mr-2"></i> Flutter Cross-Platform</h4>
+                    <p class="text-sm text-gray-600">Built seamless cross-platform mobile experiences using Flutter, ensuring consistent design and functionality across iOS and Android.</p>
+                </div>
+            </div>
+
         </section>
 
         <!-- WORK EXPERIENCE -->
@@ -234,7 +280,7 @@
             <div class="relative pl-8 md:pl-0 max-w-4xl mx-auto" data-animation="stagger-fade-in">
                 
                 <!-- Role 1 -->
-                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12">
+                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12 border-l-4 border-accent">
                     <div class="hidden md:block absolute -left-12 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                     <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-accent border-4 border-white shadow-sm"></div>
                     
@@ -243,57 +289,152 @@
                             <h3 class="text-xl font-bold text-gray-800">Assistant Manager</h3>
                             <p class="text-accent font-semibold">BOC Grocery Store</p>
                         </div>
-                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0">2022 - 2024</span>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0 font-medium">Dec 2022 - Present</span>
                     </div>
-                    <ul class="list-disc list-inside text-gray-600 space-y-2">
-                        <li>Assisted in daily store operations, staff supervision, and training to drive performance.</li>
-                        <li>Oversaw inventory, ordering, and stock management to ensure product availability.</li>
-                        <li>Maintained compliance with health and safety standards while ensuring excellent customer service.</li>
-                        <li>Handled cash management, sales goal support, and promotional implementation.</li>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>Assisted in daily store operations, staff supervision, and training.</li>
+                        <li>Oversaw inventory, ordering, and stock management.</li>
+                        <li>Maintained compliance with health & safety standards.</li>
+                        <li>Handled cash management, sales goal support, and promotions.</li>
                     </ul>
                 </div>
 
                 <!-- Role 2 -->
-                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12">
+                <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12 border-l-4 border-gray-300">
                     <div class="hidden md:block absolute -left-12 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                    <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-accent border-4 border-white shadow-sm"></div>
+                    <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-gray-400 border-4 border-white shadow-sm"></div>
                     
                     <div class="flex flex-col md:flex-row justify-between mb-4">
                         <div>
-                            <h3 class="text-xl font-bold text-gray-800">Accountant</h3>
-                            <p class="text-accent font-semibold">SLK Textile Co Ltd.</p>
+                            <h3 class="text-xl font-bold text-gray-800">Manager & Accountant</h3>
+                            <p class="text-accent font-semibold">S.L.K Textile Co Ltd.</p>
                         </div>
-                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0">2020 - 2021</span>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0 font-medium">May 2020 - Feb 2024</span>
                     </div>
-                    <ul class="list-disc list-inside text-gray-600 space-y-2">
-                        <li>Assisted with financial reporting, bookkeeping, and maintaining accurate financial documentation.</li>
-                        <li>Prepared and processed invoices, payments, and bank reconciliations.</li>
-                        <li>Supported budgeting, forecasting, and financial analysis for strategic planning.</li>
-                        <li>Collaborated with senior management on month-end and year-end closings.</li>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>Managed financial reporting, bookkeeping, and documentation for 3+ years.</li>
+                        <li>Processed invoices, payments, and bank reconciliations.</li>
+                        <li>Supported budgeting, forecasting, and financial analysis.</li>
+                        <li>Collaborated with senior management on month-end closings.</li>
                     </ul>
                 </div>
 
+                 <!-- Role 3 (Added) -->
+                 <div class="timeline-item bg-card p-6 mb-8 relative md:ml-12 border-l-4 border-green-500">
+                    <div class="hidden md:block absolute -left-12 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div class="hidden md:block absolute -left-[54px] top-6 w-5 h-5 rounded-full bg-green-500 border-4 border-white shadow-sm"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Hacker (Food Security)</h3>
+                            <p class="text-green-600 font-semibold">Doh Phandee - Open Innovation</p>
+                        </div>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0 font-medium">May - Jun 2020</span>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">
+                        Participated in an open innovation platform to develop solutions for food security challenges in Myanmar.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <!-- EDUCATION -->
+        <!-- LEADERSHIP & VOLUNTEERING -->
+        <section id="volunteering" class="section-container pt-0">
+            <h2 class="section-title reveal" data-animation="fade-in">Leadership & <span>Impact</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto" data-animation="stagger-fade-in">
+                <!-- TED -->
+                <div class="bg-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600 shrink-0">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">TED Talks</h3>
+                            <p class="text-xs text-gray-500">English-Burmese Translator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-xs">Translating educational content to connect people to transformative ideas (Sep 2021 - Present).</p>
+                </div>
+
+                 <!-- SoulKingdom -->
+                 <div class="bg-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 shrink-0">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">SoulKingdom</h3>
+                            <p class="text-xs text-gray-500">Translator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-xs">Exemplary performance in translating Chinese Movies & Series for non-profit organization.</p>
+                </div>
+
+                <!-- YSEALI -->
+                <div class="bg-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 shrink-0">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">YSEALI</h3>
+                            <p class="text-xs text-gray-500">Content Writer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-xs">Developed content for "The Performance of TVET in Myanmar" organized by V-Burma Link.</p>
+                </div>
+
+                <!-- BarCamp -->
+                <div class="bg-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 shrink-0">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-gray-800">BarCamps & Events</h3>
+                            <p class="text-xs text-gray-500">Activity Leader</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-xs">Leader for University Event Activities, Business Conferences, and Yangon BarCamps.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION (Expanded) -->
         <section id="education" class="section-container">
             <h2 class="section-title reveal" data-animation="fade-in">Education</h2>
-            <div class="grid md:grid-cols-3 gap-6" data-animation="stagger-fade-in">
-                <div class="bg-card p-6 text-center border-b-4 border-accent">
-                    <div class="text-accent text-3xl mb-3"><i class="fas fa-graduation-cap"></i></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-animation="stagger-fade-in">
+                 <!-- University of the People -->
+                 <div class="bg-card p-6 text-center border-b-4 border-purple-500 relative group">
+                    <div class="text-purple-500 text-3xl mb-3 group-hover:scale-110 transition-transform"><i class="fas fa-laptop-code"></i></div>
+                   <h3 class="font-bold text-lg">AS Computer Science</h3>
+                   <p class="text-gray-500 text-xs mt-1">University of the People</p>
+                   <p class="text-gray-400 text-xs">Sep 2022</p>
+               </div>
+                <!-- ACCA -->
+                <div class="bg-card p-6 text-center border-b-4 border-accent relative group">
+                     <div class="text-accent text-3xl mb-3 group-hover:scale-110 transition-transform"><i class="fas fa-file-invoice-dollar"></i></div>
                     <h3 class="font-bold text-lg">ACCA Part-1</h3>
-                    <p class="text-gray-500 text-sm mt-1">2021</p>
+                    <p class="text-gray-500 text-xs mt-1">Nay Lin Aung Academy</p>
+                    <p class="text-gray-400 text-xs">2021</p>
                 </div>
-                <div class="bg-card p-6 text-center border-b-4 border-accent">
-                    <div class="text-accent text-3xl mb-3"><i class="fas fa-university"></i></div>
+                <!-- Degree -->
+                <div class="bg-card p-6 text-center border-b-4 border-accent relative group">
+                     <div class="text-accent text-3xl mb-3 group-hover:scale-110 transition-transform"><i class="fas fa-graduation-cap"></i></div>
                     <h3 class="font-bold text-lg">B.Sc (Hons) Mathematics</h3>
-                    <p class="text-gray-500 text-sm mt-1">West Yangon University, 2020</p>
+                    <p class="text-gray-500 text-xs mt-1">West Yangon University, 2020</p>
+                    <p class="text-[10px] text-gray-400 mt-1 italic">Thesis: Beta and Gamma Functions</p>
+                    <span class="absolute top-2 right-2 text-[10px] bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full font-medium">Outstanding Prize</span>
                 </div>
-                <div class="bg-card p-6 text-center border-b-4 border-accent">
-                    <div class="text-accent text-3xl mb-3"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3 class="font-bold text-lg">UK Diploma in Accounting</h3>
-                    <p class="text-gray-500 text-sm mt-1">2019</p>
+                <!-- LCCI -->
+                <div class="bg-card p-6 text-center border-b-4 border-accent relative group">
+                    <div class="text-accent text-3xl mb-3 group-hover:scale-110 transition-transform"><i class="fas fa-university"></i></div>
+                    <h3 class="font-bold text-lg">LCCI Diploma</h3>
+                    <p class="text-gray-500 text-xs mt-1">Level 3 Accounting & Finance</p>
+                    <div class="mt-3 text-left bg-gray-50 p-2 rounded text-[10px] space-y-1">
+                        <div class="flex justify-between"><span>Business Calc:</span> <span class="text-green-600 font-bold">Distinction</span></div>
+                        <div class="flex justify-between"><span>Cost & Mgmt:</span> <span class="text-blue-600 font-bold">Merit</span></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -301,52 +442,151 @@
         <!-- SKILLS & CERTIFICATIONS -->
         <section id="skills" class="section-container">
             <h2 class="section-title reveal" data-animation="fade-in">Skills & <span>Certifications</span></h2>
-            <div class="bg-card p-8" data-animation="stagger-fade-in">
-                <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-card p-6 md:p-8 rounded-xl" data-animation="stagger-fade-in">
+                <div class="grid lg:grid-cols-2 gap-12">
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Technical & Core Skills</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Accounting</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Financial Management</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Data Analysis (Excel)</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Java</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Graphic Design</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Network Security</span>
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Digital Marketing</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Proficiency</h3>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <!-- Tech -->
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Java</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Android Dev</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Flutter</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Python</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">HTML/CSS</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Debugging</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Performance Testing</span>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Network Security</span>
+                            <!-- Business/Other -->
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Financial Analysis</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Accounting</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Stock Market Analysis</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">HR Management</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Public Speaking</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold hover:bg-accent hover:text-white transition-colors">Life Coaching</span>
+                        </div>
+                        
+                         <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Languages</h3>
+                         <ul class="space-y-3 text-gray-600 text-sm">
+                             <li class="flex justify-between items-center"><span>Burmese (Native)</span> <span class="text-accent text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></li>
+                             <li class="flex justify-between items-center"><span>English (Professional)</span> <span class="text-accent text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span></li>
+                             <li class="flex justify-between items-center"><span>Chinese (HSK 3)</span> <span class="text-accent text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></span></li>
+                         </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Verified Certifications</h3>
+                        <div class="space-y-4 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                             <!-- Tech & Security -->
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-shield-alt text-red-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Certified Network Security Specialist (CNSS)</h4>
+                                    <p class="text-xs text-gray-500">ICSI (May 2020)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-search text-gray-700 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Autopsy Basics and Hands On (Forensics)</h4>
+                                    <p class="text-xs text-gray-500">Basis Technology (8 Hours)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fab fa-android text-green-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Flutter - Beginners Course</h4>
+                                    <p class="text-xs text-gray-500">Udemy (Jun 2021)</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Design & UX -->
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fab fa-google text-blue-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Foundation of User Experience (UX) Design</h4>
+                                    <p class="text-xs text-gray-500">Google (Apr 2021)</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Math & Data -->
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-university text-red-800 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Introduction to Probability</h4>
+                                    <p class="text-xs text-gray-500">HarvardX (Jan 2021)</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-graduation-cap text-red-900 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Intro to Mathematical Thinking</h4>
+                                    <p class="text-xs text-gray-500">Stanford Online (Jul 2021)</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Business & Management -->
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-rocket text-purple-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">StartUp 101</h4>
+                                    <p class="text-xs text-gray-500">Phandeeyar Institute (Sep 2020)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-bullseye text-red-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Induction to OKR</h4>
+                                    <p class="text-xs text-gray-500">Information Matrix Co., Ltd (May 2020)</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-users-cog text-indigo-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Human Resources Management</h4>
+                                    <p class="text-xs text-gray-500">eLearning College (Jan 2021)</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-lightbulb text-yellow-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Life Coaching (Short Course)</h4>
+                                    <p class="text-xs text-gray-500">eLearning College (Dec 2020)</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fab fa-facebook text-blue-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Facebook Advertising for Beginners</h4>
+                                    <p class="text-xs text-gray-500">Edu Hub Academy (Jun 2020)</p>
+                                </div>
+                            </div>
+
+                            <!-- PwC Series -->
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-chart-bar text-orange-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Data Visualization with Advanced Excel</h4>
+                                    <p class="text-xs text-gray-500">PwC (Nov 2020)</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-chart-line text-orange-600 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Data-driven Decision Making</h4>
+                                    <p class="text-xs text-gray-500">PwC (Oct 2020)</p>
+                                </div>
+                            </div>
+
+                            <!-- Language -->
+                            <div class="flex items-start p-3 bg-gray-50 rounded-lg">
+                                <i class="fas fa-language text-red-500 mt-1 mr-3 text-lg"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Chinese for HSK 3 Part-1</h4>
+                                    <p class="text-xs text-gray-500">Peking University (Apr 2021)</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-6 border-l-4 border-accent pl-3">Certifications</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Harvard & Stanford:</strong> Probability, Mathematical Thinking</span></li>
-                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>PwC:</strong> Accounting & Finance</span></li>
-                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Google:</strong> Network Security, Data Analysis, UX Design</span></li>
-                            <li class="flex items-start"><i class="fas fa-certificate text-accent mt-1 mr-2"></i> <span><strong>Pearson:</strong> Business Communication</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HIGHLIGHTS & AWARDS -->
-        <section id="initiatives" class="section-container pt-0">
-            <h2 class="section-title reveal" data-animation="fade-in">Highlights & <span>Awards</span></h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-card p-6 reveal" data-animation="fade-in">
-                    <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-trophy text-yellow-500 mr-2"></i> Academic Excellence</h3>
-                    <ul class="text-gray-600 space-y-2">
-                         <li>Hardworking Student & Outstanding Mathematics Prizes</li>
-                         <li>Full Scholarship (Nay Lin Aung Finance & Accountancy Academy)</li>
-                    </ul>
-                </div>
-                <div class="bg-card p-6 reveal" data-animation="fade-in">
-                    <h3 class="text-xl font-bold text-gray-800 mb-3"><i class="fas fa-hand-holding-heart text-red-500 mr-2"></i> Social Impact</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><strong>TED Talks:</strong> English-Burmese Translator</li>
-                        <li><strong>YSEALI Youth Event:</strong> Content Writer</li>
-                        <li><strong>Innovation Hackathon:</strong> Food Security Solutions (Doh Phandee)</li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -355,34 +595,46 @@
         <section id="contact" class="section-container text-center">
              <h2 class="section-title reveal" data-animation="fade-in">Let's Build Something <span>Together</span></h2>
              <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8 reveal" data-animation="fade-in">
-                I'm always excited to connect with new people and explore new opportunities. If you have a project in mind or just want to chat, feel free to reach out.
+                I'm always excited to connect with new people and explore opportunities. Based in Bangkok.
             </p>
-            <div class="reveal" data-animation="fade-in">
-                <a href="mailto:waiyantunoo.mm@gmail.com" class="text-2xl font-bold text-accent hover:underline break-all">
-                    waiyantunoo.mm@gmail.com
+            <div class="reveal flex flex-col items-center gap-4" data-animation="fade-in">
+                <a href="mailto:waiyan96174@gmail.com" class="bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-accent-dark transition-all">
+                    <i class="fas fa-envelope mr-2"></i> Send an Email
                 </a>
+                
+                <div class="flex gap-6 mt-6">
+                    <a href="https://www.linkedin.com/in/waiyantunoo/" target="_blank" class="text-3xl text-gray-400 hover:text-[#0077b5] transition-colors"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-3xl text-gray-400 hover:text-black transition-colors"><i class="fab fa-medium"></i></a>
+                </div>
             </div>
         </section>
     </div>
     
-    <footer class="text-center py-8 mt-12 border-t border-gray-200">
-        <p class="text-gray-500">Designed and built by Wai Yan Tun Oo.</p>
+    <footer class="text-center py-8 mt-12 border-t border-gray-200 bg-white">
+        <p class="text-gray-500">Designed and built by Wai Yan Tun Oo &copy; 2025</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Hero Section Entry Animation ---
-            anime.timeline({ easing: 'easeOutExpo', duration: 1200 })
-            .add({ targets: '.hero-image-container', opacity: [0, 1], scale: [0.8, 1] })
-            .add({ targets: '.hero-name', opacity: [0, 1], translateX: [-30, 0] }, '-=800')
-            .add({ targets: '.hero-subtitle', opacity: [0, 1], translateX: [-30, 0] }, '-=900')
-            .add({ targets: '.hero-description', opacity: [0, 1], translateY: [30, 0] }, '-=900')
-            .add({ targets: '.hero-button', opacity: [0, 1], translateY: [30, 0] }, '-=900');
+            // --- Mobile Menu Logic ---
+            const btn = document.getElementById('menu-btn');
+            const menu = document.getElementById('mobile-menu');
 
-            // --- Optimized Scroll Animation Logic ---
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('open');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('open');
+                });
+            });
+
+            // --- Scroll Animations ---
             const animationMap = {
                 'fade-in': { opacity: [0, 1], translateY: [20, 0] },
-                'stagger-fade-in': { opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(120) }
+                'stagger-fade-in': { opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(100) }
             };
 
             const observer = new IntersectionObserver((entries, obs) => {
@@ -393,7 +645,7 @@
                         
                         let targets;
                         if (animationType.includes('stagger')) {
-                            targets = el.querySelectorAll('.stat-card, .bg-card, .skill-item, .project-card, .timeline-item');
+                            targets = el.querySelectorAll('.stat-card, .bg-card, .timeline-item, .reveal, .flex > div');
                         } else {
                             targets = el;
                         }
@@ -410,6 +662,17 @@
                     }
                 });
             }, { threshold: 0.1 });
+
+            document.querySelectorAll('.hero-anim').forEach((el, index) => {
+                anime({
+                    targets: el,
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    delay: 200 * index,
+                    easing: 'easeOutExpo',
+                    duration: 1200
+                });
+            });
 
             document.querySelectorAll('[data-animation]').forEach(el => {
                 observer.observe(el);
