@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wai Yan Tun Oo (Sky) - Portfolio</title>
-    
+    <title>Wai Yan Tun Oo (Sky) — Freelance Accountant &amp; Builder | Bangkok</title>
+    <meta name="description" content="Freelance Accountant in Huai Khwang, Bangkok. ACCA Diploma &amp; LCCI Level 3. Founder of SCI Exchange (MMK ↔ THB). Xero Certified Specialist. Portfolio of finance, operations, and software work.">
+    <meta name="author" content="Wai Yan Tun Oo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://waiyantunoo.github.io/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://waiyantunoo.github.io/">
+    <meta property="og:title" content="Wai Yan Tun Oo (Sky) — Freelance Accountant &amp; Builder">
+    <meta property="og:description" content="ACCA Diploma · LCCI Level 3 · Xero Certified Specialist. Founder of SCI Exchange. Based in Huai Khwang, Bangkok.">
+    <meta property="og:image" content="https://waiyantunoo.github.io/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wai Yan Tun Oo (Sky) — Freelance Accountant &amp; Builder">
+    <meta name="twitter:description" content="ACCA Diploma · LCCI Level 3 · Xero Certified Specialist. Founder of SCI Exchange. Based in Bangkok.">
+    <meta name="twitter:image" content="https://waiyantunoo.github.io/images/og-image.jpg">
+
+    <link rel="icon" href="images/profile-picture.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="images/profile-picture.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +36,38 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Wai Yan Tun Oo",
+      "alternateName": ["Sky", "刘炳川"],
+      "url": "https://waiyantunoo.github.io/",
+      "image": "https://waiyantunoo.github.io/images/og-image.jpg",
+      "email": "mailto:waiyan96174@gmail.com",
+      "jobTitle": "Freelance Accountant",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Huai Khwang",
+        "addressRegion": "Bangkok",
+        "addressCountry": "TH"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/waiyantunoo/",
+        "https://sci-exchange.waiyantunoo.workers.dev/"
+      ],
+      "knowsAbout": [
+        "Accounting",
+        "Xero",
+        "QuickBooks",
+        "Financial Reporting",
+        "Currency Exchange",
+        "Software Development"
+      ]
+    }
+    </script>
 
     <style>
         /* --- Base & Typography --- */
@@ -91,16 +145,43 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* --- A11y --- */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 100;
+            padding: 0.75rem 1.25rem;
+            background: #0d6efd;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 0 0 0.5rem 0;
+        }
+        .skip-link:focus {
+            left: 0;
+        }
+        :focus-visible {
+            outline: 3px solid #0d6efd;
+            outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .floating-image { animation: none !important; }
+            .reveal, .hero-anim { opacity: 1 !important; }
+        }
     </style>
 </head>
 <body class="antialiased">
 
+    <a class="skip-link" href="#about">Skip to content</a>
+
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm" aria-label="Primary">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="#" class="text-xl font-extrabold text-gray-800 tracking-tight">Wai Yan Tun <span class="text-accent">Oo</span></a>
+                <a href="#about" class="text-xl font-extrabold text-gray-800 tracking-tight">Wai Yan Tun <span class="text-accent">Oo</span></a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex gap-8 font-medium text-gray-600 text-sm">
@@ -109,11 +190,12 @@
                     <a href="#experience" class="hover:text-accent transition-colors">Experience</a>
                     <a href="#education" class="hover:text-accent transition-colors">Education</a>
                     <a href="#skills" class="hover:text-accent transition-colors">Skills</a>
+                    <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="menu-btn" class="md:hidden text-gray-600 focus:outline-none p-2">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="menu-btn" type="button" class="md:hidden text-gray-600 focus:outline-none p-2" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
 
@@ -124,6 +206,7 @@
                 <a href="#experience" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Experience</a>
                 <a href="#education" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Education</a>
                 <a href="#skills" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Skills</a>
+                <a href="#contact" class="text-gray-700 hover:text-accent font-medium w-full text-center py-2" onclick="closeMenu()">Contact</a>
             </div>
         </div>
     </nav>
@@ -147,7 +230,7 @@
             <div class="hero-anim flex justify-center order-1 md:order-2">
                 <div class="relative w-64 h-64 sm:w-80 sm:h-80 floating-image">
                     <div class="absolute inset-0 bg-white rounded-full shadow-2xl p-2 border-2 border-gray-100 overflow-hidden">
-                         <img src="images/profile-picture.jpg?auto=compress&cs=tinysrgb&w=400" alt="Profile picture of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full"> 
+                         <img src="images/profile-picture.jpg" width="640" height="640" alt="Professional portrait of Wai Yan Tun Oo" class="w-full h-full object-cover rounded-full" decoding="async" fetchpriority="high"> 
                     </div>
                 </div>
             </div>
@@ -279,9 +362,7 @@
                                 A groundbreaking 12-part series adapting my thesis on Gamma and Beta functions. This research bridges 18th-century mathematics with modern AI, proposing novel mathematical frameworks to resolve AI uncertainty.
                             </p>
                         </div>
-                        <a href="#" class="inline-flex items-center bg-gray-100 text-gray-800 border border-gray-300 font-semibold py-2 px-6 rounded-full text-sm hover:bg-gray-200 transition-colors duration-300">
-                            <i class="fab fa-medium mr-2"></i> Read on Medium
-                        </a>
+                        <p class="text-sm text-gray-500 italic">Research series based on thesis work on Gamma and Beta functions.</p>
                     </div>
                     <div class="hidden md:flex md:w-1/4 justify-center items-center self-center">
                        <div class="text-accent text-opacity-10 text-8xl">
@@ -307,12 +388,7 @@
                                 Authored a definitive 60+ page educational resource that simplifies complex Calculus concepts for Myanmar students, bridging the gap between theoretical math and practical application.
                             </p>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-4">
-                            <a href="main.pdf" target="_blank" class="inline-flex items-center bg-gray-900 text-white font-semibold py-2 px-6 rounded-full text-sm hover:bg-gray-700 transition-colors duration-300">
-                                <i class="fas fa-book-open mr-2"></i> Read Book (PDF)
-                            </a>
-                        </div>
+                        <p class="text-sm text-gray-500 italic">Educational publication in Burmese for Myanmar mathematics students.</p>
                     </div>
                     <div class="hidden md:flex md:w-1/4 justify-center items-center self-center pt-8 md:pt-0">
                        <div class="text-indigo-600 text-opacity-10 text-9xl">
@@ -430,7 +506,7 @@
                             <h3 class="text-xl font-bold text-gray-800">Assistant Manager</h3>
                             <p class="text-accent font-semibold">BOC Grocery Store</p>
                         </div>
-                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0 font-medium">Dec 2022 - Present</span>
+                        <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full h-fit mt-2 md:mt-0 font-medium">Dec 2022 - 2024</span>
                     </div>
                     <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm md:text-base">
                         <li>Assisted in daily store operations, staff supervision, and training.</li>
@@ -811,41 +887,58 @@
             </p>
             <div class="reveal flex flex-col items-center gap-4" data-animation="fade-in">
                 <a href="mailto:waiyan96174@gmail.com" class="bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-accent-dark transition-all">
-                    <i class="fas fa-envelope mr-2"></i> Send an Email
+                    <i class="fas fa-envelope mr-2" aria-hidden="true"></i> Send an Email
                 </a>
+                <p class="text-gray-500 text-sm">Huai Khwang, Bangkok · Open to accounting and finance opportunities</p>
                 
-                <div class="flex gap-6 mt-6">
-                    <a href="https://www.linkedin.com/in/waiyantunoo/" target="_blank" class="text-3xl text-gray-400 hover:text-[#0077b5] transition-colors"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="text-3xl text-gray-400 hover:text-black transition-colors"><i class="fab fa-medium"></i></a>
-                    <a href="https://web.facebook.com/skycreationinnovations" target="_blank" class="text-3xl text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-facebook"></i></a>
+                <div class="flex gap-6 mt-4">
+                    <a href="https://www.linkedin.com/in/waiyantunoo/" target="_blank" rel="noopener noreferrer" class="text-3xl text-gray-400 hover:text-[#0077b5] transition-colors" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://sci-exchange.waiyantunoo.workers.dev/" target="_blank" rel="noopener noreferrer" class="text-3xl text-gray-400 hover:text-green-600 transition-colors" aria-label="SCI Exchange business"><i class="fas fa-globe" aria-hidden="true"></i></a>
+                    <a href="https://web.facebook.com/skycreationinnovations" target="_blank" rel="noopener noreferrer" class="text-3xl text-gray-400 hover:text-blue-600 transition-colors" aria-label="Sky Creation Innovations on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
                 </div>
             </div>
         </section>
     </div>
     
     <footer class="text-center py-8 mt-12 border-t border-gray-200 bg-white">
-        <p class="text-gray-500">Designed and built by Wai Yan Tun Oo &copy; 2026</p>
+        <p class="text-gray-500">Designed and built by Wai Yan Tun Oo &copy; <span id="year">2026</span></p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Mobile Menu Logic ---
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
             const btn = document.getElementById('menu-btn');
             const menu = document.getElementById('mobile-menu');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const setMenu = (open) => {
+                menu.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', String(open));
+            };
+
+            window.closeMenu = () => setMenu(false);
 
             btn.addEventListener('click', () => {
-                menu.classList.toggle('open');
+                setMenu(!menu.classList.contains('open'));
             });
 
-            // Close menu when clicking a link
-            window.closeMenu = () => menu.classList.remove('open');
             document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.remove('open');
-                });
+                link.addEventListener('click', () => setMenu(false));
             });
 
-            // --- Scroll Animations ---
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') setMenu(false);
+            });
+
+            if (reduceMotion || typeof anime === 'undefined') {
+                document.querySelectorAll('.reveal, .hero-anim').forEach(el => {
+                    el.style.opacity = '1';
+                });
+                return;
+            }
+
             const animationMap = {
                 'fade-in': { opacity: [0, 1], translateY: [20, 0] },
                 'stagger-fade-in': { opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(100) }
